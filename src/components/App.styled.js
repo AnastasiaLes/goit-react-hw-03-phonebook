@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Formik, Field } from 'formik';
+import { Field } from 'formik';
 
 // export const FormField = styled(Formik)`
 // /* margin-left: 30px; */
