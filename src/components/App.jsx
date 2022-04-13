@@ -5,29 +5,46 @@ export class PhoneBook extends React.Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
-  handleClick = (values, { resetForm }) => {
+  handleSubmit = (values, { resetForm }) => {
     console.log(this.state.contacts);
 
-    resetForm();
     // this.setState(prevState => {
     //   return {
     //     contacts: prevState.contacts.push(values),
     //   };
     // });
     this.state.contacts.push(values);
+    // this.setState({
+    //   contacts: this.state.contacts.push(values)
+    // });
     console.log(this.state.contacts.length);
+    // this.props.onSubmit({ ...this.state });
+    // this.ContactList();
+    resetForm();
   };
 
   ContactList = ({ contacts }) => {
-    const List = contacts.map(contact => (
-      <li key={contact.id}>{contact.name}</li>
-    ));
+    // const contacts = this.state.contacts;
+    // const List = contacts.map(contact => (
+    //   <li key={contact.id}>{contact.name}</li>
+    // ));
     return (
       <div>
         <h2>Contacts</h2>
-        {contacts.length > 0 && <ul>{List}</ul>}
+        {/* <ul>{List}</ul> */}
+        {contacts.length > 0 && (
+          <ul>
+            {contacts.map(contact => (
+              <li key={contact.id}>
+                {' '}
+                {contact.name}: {contact.number}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   };
@@ -35,7 +52,7 @@ export class PhoneBook extends React.Component {
   render() {
     return (
       <div>
-        <NameField onSubmit={this.handleClick} />
+        <NameField onSubmit={this.handleSubmit} />
         <this.ContactList contacts={this.state.contacts} />
       </div>
     );

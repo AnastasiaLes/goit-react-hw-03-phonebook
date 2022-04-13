@@ -9,6 +9,7 @@ const schema = yup.object().shape({
 
 const initialValues = {
   name: '',
+  number: '',
   id: nanoid(),
 };
 
@@ -22,6 +23,10 @@ export const NameField = ({ onSubmit }) => {
       <Form autoComplete="off">
         <FieldName htmlFor="name">Name</FieldName>
         <ContactField type="text" name="name" />
+        <ErrorMessage name="name" component="div" />
+
+        <FieldName htmlFor="number">Number</FieldName>
+        <ContactField type="tel" name="number" />
         <ErrorMessage name="name" component="div" />
 
         <AddContactButton type="submit"> Add contact </AddContactButton>
