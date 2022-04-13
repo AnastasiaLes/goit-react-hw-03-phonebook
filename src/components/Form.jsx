@@ -12,22 +12,19 @@ const initialValues = {
   id: nanoid(),
 };
 
-export const NameField = ({ handleClick }) => {
+export const NameField = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={schema}
-      // onSubmit={onSubmit}
+      onSubmit={onSubmit}
     >
       <Form autoComplete="off">
         <FieldName htmlFor="name">Name</FieldName>
         <ContactField type="text" name="name" />
         <ErrorMessage name="name" component="div" />
 
-        <AddContactButton type="button" onClick={handleClick}>
-          {' '}
-          Add contact{' '}
-        </AddContactButton>
+        <AddContactButton type="submit"> Add contact </AddContactButton>
       </Form>
     </Formik>
   );

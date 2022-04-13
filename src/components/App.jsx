@@ -1,7 +1,5 @@
 import React from 'react';
-// import { AddedContacts } from './Contacts';
 import { NameField } from './Form';
-// import { nanoid } from 'nanoid';
 
 export class PhoneBook extends React.Component {
   state = {
@@ -10,20 +8,19 @@ export class PhoneBook extends React.Component {
   };
 
   handleClick = (values, { resetForm }) => {
-    console.log(values);
     console.log(this.state.contacts);
+
     resetForm();
-    this.setState(prevState => {
-      return {
-        contacts: prevState.contacts.push(values),
-      };
-    });
-    // this.state.contacts.push(values);
+    // this.setState(prevState => {
+    //   return {
+    //     contacts: prevState.contacts.push(values),
+    //   };
+    // });
+    this.state.contacts.push(values);
+    console.log(this.state.contacts.length);
   };
 
-  ContactList = props => {
-    console.log('Yes');
-    const contacts = props.contacts;
+  ContactList = ({ contacts }) => {
     const List = contacts.map(contact => (
       <li key={contact.id}>{contact.name}</li>
     ));
