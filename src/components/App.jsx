@@ -1,106 +1,84 @@
 import React from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
-import { ContactField, FieldName, AddContactButton } from './App.styled';
-import * as yup from 'yup';
-import { nanoid } from 'nanoid';
-// import { ContactList } from './Contacts';
-
-const schema = yup.object().shape({
-  name: yup.string().required(),
-});
-
-const initialValues = {
-  name: '',
-  id: nanoid(15),
-};
+// import { AddedContacts } from './Contacts';
+import { NameField } from './Form';
+// import { nanoid } from 'nanoid';
 
 export class PhoneBook extends React.Component {
   state = {
-    name: '',
     contacts: [],
+    name: '',
   };
 
-  handleSubmit = (values, { resetForm }) => {
+  handleClick = (values, { resetForm }) => {
     console.log(values);
-    // console.log(this.state.contacts);
-    // this.setState(prevState => {
-    //   return {
-    //     contacts: prevState.contacts.push(values),
-    //   };
-    // });
+    console.log(this.state.contacts);
     resetForm();
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.push(values),
+      };
+    });
+    // this.state.contacts.push(values);
+  };
+
+  ContactList = props => {
+    console.log('Yes');
+    const contacts = props.contacts;
+    const List = contacts.map(contact => (
+      <li key={contact.id}>{contact.name}</li>
+    ));
+    return (
+      <div>
+        <h2>Contacts</h2>
+        {contacts.length > 0 && <ul>{List}</ul>}
+      </div>
+    );
   };
 
   render() {
-    // const qwe = this.state.contacts;
     return (
       <div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={schema}
-          onSubmit={this.handleSubmit}
-        >
-          <Form autoComplete="off">
-            <FieldName htmlFor="name">Name</FieldName>
-            <ContactField type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
-
-            <AddContactButton type="submit"> Add contact </AddContactButton>
-          </Form>
-        </Formik>
-
-        <div>
-          <h2>Contacts</h2>
-          <ul>
-            {/* {qwe.map(contact => (
-            <li key={contact.id}>
-              {contact.name}
-            </li>))} */}
-          </ul>
-        </div>
+        <NameField onSubmit={this.handleClick} />
+        <this.ContactList contacts={this.state.contacts} />
       </div>
     );
   }
 }
 
+// const contacts = [
+//   {
+//     name: 'Hanna',
+//     id: nanoid()},
+//   {
+//     name: 'Taras',
+//     id: nanoid()
+//   },
+// ];
+
 // export const PhoneBook = () => {
 
-//   const handleSubmit = (values, {resetForm}) => {
+//   const handleSubmit = (values, { resetForm }) => {
 //     console.log(values);
 //     console.log(contacts);
 //     resetForm();
-//     return contacts.push(values);
+//     contacts.push(values);
 //   };
+
+//   const ContactList = (props) => {
+//     console.log("Yes");
+//     const contacts = props.contacts;
+//     const List = contacts.map(contact => <li key={contact.id}>
+//       {contact.name}
+//     </li>);
+//     return (
+//       <ul>{List}</ul>
+//     )
+// }
 
 //   return (
 //     <div>
-//       <Formik
-//         initialValues={initialValues}
-//         validationSchema={schema}
-//         onSubmit={handleSubmit}
-//       >
-//         <Form autoComplete='off'>
-//         <FieldName htmlFor='name'>
-//             Name
-
-//           </FieldName>
-//           <ContactField type="text" name="name" />
-//           <ErrorMessage name="name" component="div"/>
-
-//         <AddContactButton type='submit'> Add contact </AddContactButton>
-//         </Form>
-//       </Formik>
-
-//        <div>
-//         <h2>Contacts</h2>
-//         <ul>
-//           {contacts.map(contact => (
-//             <li key={contact.id}>
-//               {contact.name}
-//             </li>))}
-//         </ul>
-//       </div>
-
+//       <FormMarkup onSubmit={handleSubmit}/>
+//       <ContactList contacts={contacts}/>
 //     </div>
 //     );
 // }

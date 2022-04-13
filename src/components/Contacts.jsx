@@ -1,6 +1,4 @@
-// import React from 'react';
-
-// export const ContactList = (contacts) => {
+// export const AddedContacts = ({contacts}) => {
 //     return (
 //         <div>
 //         <h2>Contacts</h2>
