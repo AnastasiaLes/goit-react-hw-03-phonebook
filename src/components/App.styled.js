@@ -1,12 +1,6 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
 
-// export const FormField = styled(Formik)`
-// /* margin-left: 30px; */
-// display: flex;
-// gap: 20px;
-// `;
-
 export const FieldName = styled.label`
   margin-left: 30px;
   display: flex;

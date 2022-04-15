@@ -26,11 +26,6 @@ export class NameField extends React.Component {
       number,
       id: nanoid(),
     };
-
-    // this.setState(prevState => ({
-    //   contacts: [...prevState.contacts, newContact],
-    // }));
-    // console.log(this.state.contacts);
     resetForm();
     this.props.onSubmit(newContact);
   };
@@ -38,7 +33,6 @@ export class NameField extends React.Component {
   nameInputId = nanoid();
   numberInputId = nanoid();
   render() {
-    console.log(this.state.contacts);
     return (
       <Formik
         initialValues={initialValues}
