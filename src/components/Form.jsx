@@ -4,8 +4,6 @@ import { ContactField, FieldName, AddContactButton } from './App.styled';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
 
-const GenerateId = nanoid();
-
 const schema = yup.object().shape({
   name: yup.string().required(),
   number: yup.number().required().positive(),
@@ -14,31 +12,25 @@ const schema = yup.object().shape({
 const initialValues = {
   name: '',
   number: '',
-  id: GenerateId,
 };
 
 export class NameField extends React.Component {
   state = {
     contacts: [],
-    name: '',
-    number: '',
-  };
-
-  handleChange = event => {
-    const { name, value } = event.currentTarget;
-    // this.setState({ [name]: value });
-    console.log(name, value);
   };
 
   handleSubmit = (values, { resetForm }) => {
-    console.log(this.state.contacts);
+    const { name, number } = values;
+    const newContact = {
+      name,
+      number,
+      id: nanoid(),
+    };
 
-    this.state.contacts.push(values);
-    // this.setState({
-    //   contacts: this.state.contacts.push(values)
-    // });
-
-    // this.props.onSubmit({ ...this.state });
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, newContact],
+    }));
+    // console.log(this.state.contacts);
     resetForm();
     this.props.onSubmit(this.state.contacts);
   };
@@ -46,6 +38,7 @@ export class NameField extends React.Component {
   nameInputId = nanoid();
   numberInputId = nanoid();
   render() {
+    console.log(this.state.contacts);
     return (
       <Formik
         initialValues={initialValues}

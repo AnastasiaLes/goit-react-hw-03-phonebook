@@ -5,12 +5,10 @@ import { ContactList } from './ContactList';
 export class PhoneBook extends React.Component {
   state = {
     contacts: [],
-    // name: '',
-    // number: '',
   };
 
   formSubmitHandler = data => {
-    console.log(data);
+    // console.log(data);
     this.setState({
       contacts: data,
     });
