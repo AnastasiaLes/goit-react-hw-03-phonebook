@@ -1,59 +1,28 @@
 import React from 'react';
 import { NameField } from './Form';
+import { ContactList } from './ContactList';
 
 export class PhoneBook extends React.Component {
   state = {
     contacts: [],
-    name: '',
-    number: '',
+    // name: '',
+    // number: '',
   };
 
-  handleSubmit = (values, { resetForm }) => {
+  formSubmitHandler = data => {
+    console.log(data);
+    this.setState({
+      contacts: data,
+    });
     console.log(this.state.contacts);
-
-    // this.setState(prevState => {
-    //   return {
-    //     contacts: prevState.contacts.push(values),
-    //   };
-    // });
-    this.state.contacts.push(values);
-    // this.setState({
-    //   contacts: this.state.contacts.push(values)
-    // });
-    console.log(this.state.contacts.length);
-    // this.props.onSubmit({ ...this.state });
-    // this.ContactList();
-    resetForm();
-  };
-
-  ContactList = ({ contacts }) => {
-    // const contacts = this.state.contacts;
-    // const List = contacts.map(contact => (
-    //   <li key={contact.id}>{contact.name}</li>
-    // ));
-    return (
-      <div>
-        <h2>Contacts</h2>
-        {/* <ul>{List}</ul> */}
-        {contacts.length > 0 && (
-          <ul>
-            {contacts.map(contact => (
-              <li key={contact.id}>
-                {' '}
-                {contact.name}: {contact.number}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
   };
 
   render() {
     return (
       <div>
-        <NameField onSubmit={this.handleSubmit} />
-        <this.ContactList contacts={this.state.contacts} />
+        <h1>Phonebook</h1>
+        <NameField onSubmit={this.formSubmitHandler} />
+        <ContactList contacts={this.state.contacts} />
       </div>
     );
   }
