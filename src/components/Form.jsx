@@ -27,12 +27,12 @@ export class NameField extends React.Component {
       id: nanoid(),
     };
 
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+    // this.setState(prevState => ({
+    //   contacts: [...prevState.contacts, newContact],
+    // }));
     // console.log(this.state.contacts);
     resetForm();
-    this.props.onSubmit(this.state.contacts);
+    this.props.onSubmit(newContact);
   };
 
   nameInputId = nanoid();

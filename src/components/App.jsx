@@ -9,9 +9,9 @@ export class PhoneBook extends React.Component {
 
   formSubmitHandler = data => {
     // console.log(data);
-    this.setState({
-      contacts: data,
-    });
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, data],
+    }));
     console.log(this.state.contacts);
   };
 
