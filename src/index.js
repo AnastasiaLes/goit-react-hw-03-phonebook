@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { PhoneBook } from 'components/App';
+import { PhoneBook } from './components/App/App';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

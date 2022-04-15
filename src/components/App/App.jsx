@@ -1,7 +1,7 @@
 import React from 'react';
-import { NameField } from './Form';
-import { ContactList } from './ContactList';
-import { FilterField } from './filter';
+import { NameField } from '../Form/Form';
+import { ContactList } from '../ContactList/ContactList';
+import { FilterField } from '../Filter/filter';
 
 export class PhoneBook extends React.Component {
   state = {

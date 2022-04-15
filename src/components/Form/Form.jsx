@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { ContactField, FieldName, AddContactButton } from './App.styled';
+import { ContactField, FieldName, AddContactButton } from './Form.styled';
 import { nanoid } from 'nanoid';
 import * as yup from 'yup';
 
