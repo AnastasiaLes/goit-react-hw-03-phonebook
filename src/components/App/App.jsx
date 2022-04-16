@@ -3,6 +3,8 @@ import { NameField } from '../Form/Form';
 import { ContactList } from '../ContactList/ContactList';
 import { FilterField } from '../Filter/filter';
 
+const LS_KEY = 'added_contacts';
+
 export class PhoneBook extends React.Component {
   state = {
     contacts: [
@@ -13,6 +15,21 @@ export class PhoneBook extends React.Component {
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const contactsObj = JSON.parse(localStorage.getItem(LS_KEY));
+    if (contactsObj !== null) {
+      this.setState({
+        contacts: contactsObj,
+      });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+    }
+  }
 
   formSubmitHandler = data => {
     this.state.contacts.find(contact => contact.name === data.name)
