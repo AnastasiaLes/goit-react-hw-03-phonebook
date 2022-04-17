@@ -15,10 +15,6 @@ const initialValues = {
 };
 
 export class NameField extends React.Component {
-  state = {
-    contacts: [],
-  };
-
   handleSubmit = (values, { resetForm }) => {
     const { name, number } = values;
     const newContact = {

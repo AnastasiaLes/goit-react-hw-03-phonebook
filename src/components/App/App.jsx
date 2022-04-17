@@ -63,10 +63,7 @@ export class PhoneBook extends React.Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <NameField
-          value={this.state.filter}
-          onSubmit={this.formSubmitHandler}
-        />
+        <NameField onSubmit={this.formSubmitHandler} />
         <FilterField onChange={this.ChangeFilter} />
         <ContactList
           contacts={visibleContacts}
